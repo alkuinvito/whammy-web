@@ -3,11 +3,7 @@ interface TerminalCursorProps {
 }
 
 function TerminalCursor({ isFocused }: TerminalCursorProps) {
-  if (isFocused) {
-    return <span className="animate-blink">_</span>;
-  }
-
-  return <span>_</span>;
+  return <span className={isFocused ? "animate-blink" : ""}>_</span>;
 }
 
 export default TerminalCursor;

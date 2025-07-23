@@ -1,6 +1,7 @@
 import { twMerge } from "tailwind-merge";
 import TerminalCursor from "./TerminalCursor";
 import { useRef, useState, useEffect } from "react";
+import TerminalInput from "./TerminalInput";
 
 interface TerminalWindowProps {
   className?: string;
@@ -13,8 +14,6 @@ function TerminalWindow({
   defaultMessage,
   prefix,
 }: TerminalWindowProps) {
-  prefix = (prefix || "$") + " ";
-
   const ref = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
 
@@ -39,7 +38,7 @@ function TerminalWindow({
       onClick={() => setIsFocused(true)}
     >
       {defaultMessage && <span>{defaultMessage}</span>}
-      <span>{prefix}</span>
+      <TerminalInput isFocused={isFocused} prefix={prefix} />
       <TerminalCursor isFocused={isFocused} />
     </div>
   );
