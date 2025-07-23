@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import TerminalCursor from "./TerminalCursor";
 import { useRef, useState, useEffect } from "react";
 import TerminalInput from "./TerminalInput";
+import TerminalEntry from "./TerminalEntry";
 
 interface TerminalWindowProps {
   className?: string;
@@ -15,7 +16,23 @@ function TerminalWindow({
   prefix,
 }: TerminalWindowProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [isFocused, setIsFocused] = useState(false);
+  const ulRef = useRef<HTMLUListElement>(null);
+  const [isFocused, setIsFocused] = useState(true);
+  const [content, setContent] = useState<string[]>();
+
+  const handleSubmit = (input: string) => {
+    if (!content) {
+      setContent([input]);
+    } else {
+      setContent([...content, input]);
+    }
+  };
+
+  const scrollToBottom = () => {
+    if (ref.current) {
+      ref.current.scrollTop = ref.current.scrollHeight;
+    }
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -28,18 +45,50 @@ function TerminalWindow({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  useEffect(() => {
+    if (!ref.current) return;
+
+    scrollToBottom();
+
+    if (!ulRef.current) return;
+    const resizeObserver = new ResizeObserver(scrollToBottom);
+    resizeObserver.observe(ulRef.current);
+
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [content]);
+
   return (
     <div
       ref={ref}
       className={twMerge(
-        "w-screen sm:max-w-[720px] h-screen sm:max-h-[480px] p-2 border-2 border-neutral-500 rounded-lg",
+        "block w-screen sm:max-w-[720px] h-screen sm:max-h-[480px] p-2 border-2 border-neutral-500 rounded-lg overflow-y-auto no-scrollbar",
         className
       )}
       onClick={() => setIsFocused(true)}
     >
-      {defaultMessage && <span>{defaultMessage}</span>}
-      <TerminalInput isFocused={isFocused} prefix={prefix} />
-      <TerminalCursor isFocused={isFocused} />
+      <ul ref={ulRef}>
+        {defaultMessage && (
+          <li>
+            <TerminalEntry content={defaultMessage} />
+          </li>
+        )}
+        {content &&
+          content.map((entry, i) => (
+            <li key={"ct" + i.toString()}>
+              <TerminalEntry content={entry} />
+            </li>
+          ))}
+        <li>
+          <TerminalInput
+            isFocused={isFocused}
+            prefix={prefix}
+            onSubmit={handleSubmit}
+          />
+          <TerminalCursor isFocused={isFocused} />
+        </li>
+      </ul>
     </div>
   );
 }
