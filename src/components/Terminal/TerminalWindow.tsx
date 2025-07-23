@@ -1,12 +1,12 @@
+import { useRef, useState, useEffect, type ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import TerminalCursor from "./TerminalCursor";
-import { useRef, useState, useEffect } from "react";
 import TerminalInput from "./TerminalInput";
 import TerminalEntry from "./TerminalEntry";
 
 interface TerminalWindowProps {
   className?: string;
-  defaultMessage?: string;
+  defaultMessage?: ReactNode;
   prefix?: string;
 }
 
@@ -21,11 +21,7 @@ function TerminalWindow({
   const [content, setContent] = useState<string[]>();
 
   const handleSubmit = (input: string) => {
-    if (!content) {
-      setContent([input]);
-    } else {
-      setContent([...content, input]);
-    }
+    setContent((prev) => [...(prev ?? []), input]);
   };
 
   const scrollToBottom = () => {
@@ -63,7 +59,7 @@ function TerminalWindow({
     <div
       ref={ref}
       className={twMerge(
-        "block w-screen sm:max-w-[720px] h-screen sm:max-h-[480px] p-2 border-2 border-neutral-500 rounded-lg overflow-y-auto no-scrollbar",
+        "block w-screen sm:max-w-[800px] h-screen sm:max-h-[560px] p-2 border-2 border-neutral-500 rounded-lg overflow-y-auto no-scrollbar",
         className
       )}
       onClick={() => setIsFocused(true)}

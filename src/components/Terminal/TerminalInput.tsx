@@ -37,7 +37,7 @@ function TerminalInput({
 
   return (
     <>
-      <span className="wrap-anywhere break-all">
+      <span className="wrap-anywhere break-all whitespace-pre-wrap">
         {prefix}
         {inputBuf}
       </span>
