@@ -4,23 +4,26 @@ interface TerminalInputProps {
   prefix?: string;
   isFocused: boolean;
   onSubmit: (input: string) => void;
+  onKeyDown?: () => void;
 }
 
 function TerminalInput({
-  prefix = "$ ",
+  prefix,
   isFocused,
   onSubmit,
+  onKeyDown,
 }: TerminalInputProps) {
   const [inputBuf, setInputBuf] = useState("");
 
   const handleSubmit = () => {
-    onSubmit(prefix + inputBuf);
+    onSubmit(inputBuf);
     setInputBuf("");
   };
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (isFocused) {
+        if (onKeyDown) onKeyDown();
         if (event.key.length === 1) {
           setInputBuf((prev) => prev + event.key);
         } else if (event.key === "Backspace") {
