@@ -30,6 +30,12 @@
   background: var(--color-text);
 }
 
+div:active,
+div:focus {
+  outline: none;
+  border: none;
+}
+
 a {
   font-weight: 500;
   color: var(--color-blue);
