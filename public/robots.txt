@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://wham.my.id/sitemap.xml
