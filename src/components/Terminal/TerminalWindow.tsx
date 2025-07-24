@@ -96,7 +96,7 @@ function TerminalWindow({
           <div className="size-3 rounded-full bg-yellow"></div>
           <div className="size-3 rounded-full bg-green"></div>
         </div>
-        <span className="block w-full text-center select-none">ghostty</span>
+        <span className="block w-full text-center select-none">whammy</span>
       </div>
       <div
         ref={cmdRef}
