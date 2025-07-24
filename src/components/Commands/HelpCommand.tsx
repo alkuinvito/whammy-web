@@ -4,7 +4,7 @@ function HelpCommand({ params }: CommandParamsProps) {
   if (params && params.length > 0) {
     const arg1 = params.shift();
     if (params.length != 0) {
-      return `Invalid args: ${params.shift}. Type \`help\` for command list.`;
+      return `Invalid args: ${params.shift()}. Type \`help\` for command list.`;
     }
 
     switch (arg1) {
