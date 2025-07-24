@@ -20,6 +20,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+::-moz-selection {
+  color: var(--color-base);
+  background: var(--color-text);
+}
+
+::selection {
+  color: var(--color-base);
+  background: var(--color-text);
+}
+
 a {
   font-weight: 500;
   color: var(--color-blue);
