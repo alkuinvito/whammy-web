@@ -67,7 +67,7 @@ function HelpCommand({ params }: CommandParamsProps) {
 
   return (
     <>
-      <span>Whammy is a personal portfolio built using Vite.js</span>
+      <span>Whammy is a portfolio built by Alkuin Vito using Vite.js</span>
       <br />
       <br />
       <span>CORE COMMANDS</span>
