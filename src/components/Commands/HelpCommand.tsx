@@ -9,38 +9,80 @@ function HelpCommand({ params }: CommandParamsProps) {
 
     switch (arg1) {
       case "clear":
-        return `Clear the buffer
-
-USAGE
-  clear`;
+        return (
+          <>
+            <span>Clear the buffer</span>
+            <br />
+            <br />
+            <span>USAGE</span>
+            <br />
+            <span>{`  clear`}</span>
+            <br />
+            <br />
+          </>
+        );
       case "greet":
-        return `Show welcome banner
-
-USAGE
-  greet`;
+        return (
+          <>
+            <span>Show welcome banner</span>
+            <br />
+            <br />
+            <span>USAGE</span>
+            <br />
+            <span>{`  greet`}</span>
+            <br />
+            <br />
+          </>
+        );
       case "help":
-        return `Print command list (or specific command usage)
-
-USAGE
-  help [command]`;
+        return (
+          <>
+            <span>Print command list (or specific command usage)</span>
+            <br />
+            <br />
+            <span>USAGE</span>
+            <br />
+            <span>{`  help [command]`}</span>
+            <br />
+            <br />
+          </>
+        );
       case "social":
-        return `List available socials to reach
-
-USAGE
-  social`;
+        return (
+          <>
+            <span>List available socials to reach</span>
+            <br />
+            <br />
+            <span>USAGE</span>
+            <br />
+            <span>{`  social`}</span>
+            <br />
+            <br />
+          </>
+        );
       default:
         return `Invalid args: ${arg1}. Type \`help\` for command list.`;
     }
   }
 
-  return `Whammy is a personal portfolio built using Vite.js
-
-CORE COMMANDS
-  clear             Clear the buffer
-  greet             Show welcome banner
-  help [command]    Print command list (or specific command usage)
-  social            List available socials to reach
-`;
+  return (
+    <>
+      <span>Whammy is a personal portfolio built using Vite.js</span>
+      <br />
+      <br />
+      <span>CORE COMMANDS</span>
+      <br />
+      <span>{`  clear             Clear the buffer`}</span>
+      <br />
+      <span>{`  greet             Show welcome banner`}</span>
+      <br />
+      <span>{`  help [command]    Print command list (or specific command usage)`}</span>
+      <br />
+      <span>{`  social            List available socials to reach`}</span>
+      <br />
+      <br />
+    </>
+  );
 }
 
 export default HelpCommand;

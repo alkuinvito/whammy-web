@@ -14,7 +14,7 @@ function SocialCommand({ params, onClick }: CommandParamsProps) {
       <br />
       <br />
       <span>
-        {"+ "}
+        {" + "}
         <a
           href="https://github.com/alkuinvito"
           target="_blank"
@@ -30,7 +30,7 @@ function SocialCommand({ params, onClick }: CommandParamsProps) {
       </span>
       <br />
       <span>
-        {"+ "}
+        {" + "}
         <a
           href="https://linkedin.com/in/alkuin-vito-fidei"
           target="_blank"
@@ -46,7 +46,7 @@ function SocialCommand({ params, onClick }: CommandParamsProps) {
       </span>
       <br />
       <span>
-        {"+ "}
+        {" + "}
         <a
           href="https://instagram.com/alkuinvito"
           target="_blank"
@@ -60,6 +60,26 @@ function SocialCommand({ params, onClick }: CommandParamsProps) {
           Instagram
         </a>
       </span>
+      <br />
+      <br />
+      <span>[*] Carrier Pigeon:</span>{" "}
+      <a
+        href="mailto:alkuinvito@wham.my.id"
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => {
+          if (onClick) {
+            onClick(e.currentTarget);
+          }
+        }}
+      >
+        alkuinvito@wham.my.id
+      </a>
+      <br />
+      <span className="text-subtext-0">
+        (Should you seek a direct audience, send word by digital pigeon.)
+      </span>
+      <br />
       <br />
     </>
   );
